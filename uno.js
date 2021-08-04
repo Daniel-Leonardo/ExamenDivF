@@ -20,9 +20,23 @@ function mostrar()
 	let dosis;
 	let sexo;
 	let promedio;
-	let respuesta;
+	let respuesta = "si";
+	let flagMasJoven = 1;
+	let nombreMasJoven;
+	let vacunaMasJoven;
+	let acumChina = 0;
+	let contChina = 0;
+	let contRusa = 0;
+	let contAmericana = 0;
+	let totalVacunados;
+	let vacunadosMenAmericana = 0;
+	let vacunaInoculada;
+	let contPrimeraDosis = 0;
+	let porcentajeMenoresAmericana;
+	let porcentajePrimeraDosis;
 
-	respuesta == "si";
+
+	
 
 	do
 	{
@@ -36,23 +50,60 @@ function mostrar()
 		{
 			edad = parseInt(prompt("Error ingrese una edad valida"));
 		}
+		vacuna = prompt("Ingrese una vacuna rusa ; china ; americana");
 		while(vacuna != "rusa" && vacuna != "china" && vacuna != "americana")
 		{
 			vacuna = prompt("Error ingrese una vacuna valida");
 		}
+		dosis = prompt("Ingreses una dosis p de primera o s de segunda");
 		while(dosis != "p" && dosis != "s")
 		{
 			dosis = prompt("Error ingrese una dosis valida");
 		}
+		sexo = prompt("Ingrese su sexo f de femenino o m de masculino");
 		while(sexo != "f" && sexo != "m")
 		{
 			sexo = prompt("Error ingrese un sexo valido");
 		}
-		if (edad < 12 && edad > 17)
+		switch (vacuna) 
 		{
-			
+			case "rusa":
+				contRusa++;
+				
+				break;
+			case "china":
+				contChina++;
+				acumChina = acumChina + edad;
+				break;
+			case "americana":
+				contAmericana++;
+        		break;
 		}
 
+		if (flagMasJoven || edad < nombreMasJoven);
+		{
+			nombreMasJoven = nombre;
+			vacunaMasJoven = vacuna;
+			flagMasJoven = 0;
+		}
+		if ( edad < 18 && (vacuna == "americana"))
+		{
+			vacunadosMenAmericana++;
+		}
+		if (contChina > contRusa && contChina > contAmericana) 
+		{ 
+			vacunaInoculada = "China";
+		} else if (contRusa >= contChina && contRusa > contAmericana) 
+			{
+				vacunaInoculada = "Rusa";
+			}else 
+				{
+					vacunaInoculada = "Americana";
+				}
+		if (dosis == "p")
+		{
+			contPrimeraDosis++;
+		}
 
 
 
@@ -66,8 +117,24 @@ function mostrar()
 
 
 
-
+	
 	respuesta = prompt("Desea ingresar otro nombre?");
 	}while (respuesta == "si");
 
+	totalVacunados = contRusa + contChina + contAmericana;
+	promedio = acumChina / contChina;
+	porcentajeMenoresAmericana = vacunadosMenAmericana * 100 / contAmericana;
+	porcentajePrimeraDosis = contPrimeraDosis * 100 / totalVacunados;
+
+
+
+
+
+
+
+alert("El promedio de edad de los que se vacunaron con vacuna china es: " + promedio);
+alert("El nombre de la persona mas joven es: " + nombreMasJoven + " Y la vacuna es: " + vacunaMasJoven);
+alert("La vacuna mas inoculada es: " + vacunaInoculada);
+alert("El porcentaje de menores de edad con vacuna americana es " + porcentajeMenoresAmericana);
+alert("La cantidad de persona con una primera dosis es " + porcentajePrimeraDosis);
 }
