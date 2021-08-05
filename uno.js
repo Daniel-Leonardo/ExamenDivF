@@ -46,7 +46,7 @@ function mostrar()
 			nombre = prompt("Error ingrese un nombre valido")
 		}
 		edad = parseInt( prompt("Ingrese la edad:"));
-		while(edad < 12)
+		while(edad < 12 || isNaN(edad))
 		{
 			edad = parseInt(prompt("Error ingrese una edad valida"));
 		}
